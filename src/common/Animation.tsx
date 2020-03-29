@@ -11,7 +11,7 @@ interface AnimationState {
 class Animation extends React.Component {
   state = {
     rAF: 0,
-    particles: this.generateNRandomParticles(50)
+    particles: this.generateNRandomParticles(Constants.NUMBER_OF_PARTICLES)
   }
 
   updateAnimationState = () => {
@@ -19,12 +19,16 @@ class Animation extends React.Component {
     for(let particle of this.state.particles) {
       let x = particle.x + particle.dx;
       let y = particle.y + particle.dy;
-      let dx = particle.dx;
-      let dy = particle.dy;
+      let dx = this.isInRange(x, Constants.CANVAS_WIDTH) ? particle.dx : -particle.dx;
+      let dy = this.isInRange(y, Constants.CANVAS_HEIGHT) ? particle.dy : -particle.dy;
       particles.push({x, y, dx, dy});
     }
     let rAF = requestAnimationFrame(this.updateAnimationState);
     this.setState({rAF: rAF, particles: particles});
+  }
+
+  isInRange(x: number, range: number) : boolean {
+    return  (x >= Constants.PARTICLE_RADIUS && x <= range - Constants.PARTICLE_RADIUS);
   }
 
   componentDidMount() {
@@ -39,8 +43,8 @@ class Animation extends React.Component {
   generateRandomParticle() : ParticleType {
     let x = Constants.PARTICLE_RADIUS + Math.random() * (Constants.CANVAS_WIDTH - 2 * Constants.PARTICLE_RADIUS);
     let y = Constants.PARTICLE_RADIUS + Math.random() * (Constants.CANVAS_HEIGHT - 2 * Constants.PARTICLE_RADIUS);
-    let dx = Math.random() * Constants.MAX_SPEED;
-    let dy = Math.random() * Constants.MAX_SPEED;
+    let dx = (Math.random() - 0.5) * Constants.MAX_SPEED;
+    let dy = (Math.random() - 0.5) * Constants.MAX_SPEED;
 
     return {x, y, dx, dy};
   }
