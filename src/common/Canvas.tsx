@@ -11,20 +11,20 @@ interface CanvasState {
 }
 
 class Canvas extends React.Component<CanvasProps, CanvasState> {
-  componentDidMount() {
+  componentDidUpdate() {
     const canvas = this.refs.canvas as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
+    if (ctx) ctx.clearRect(0, 0, Constants.CANVAS_WIDTH, Constants.CANVAS_HEIGHT);
 
     for(const particle of this.props.particles) {
       if(ctx){
+        ctx.save();
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, Constants.PARTICLE_RADIUS, 0, 2 * Math.PI);
         ctx.fill();
+        ctx.restore();
       }
     }
-  }
-  addParticles(node: ParticleType) {
-    
   }
 
   render() {

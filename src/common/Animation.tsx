@@ -5,11 +5,35 @@ import Canvas from './Canvas';
 
 interface AnimationState {
   particles: ParticleType[];
+  rAF: number;
 }
 
 class Animation extends React.Component {
   state = {
+    rAF: 0,
     particles: this.generateNRandomParticles(50)
+  }
+
+  updateAnimationState = () => {
+    let particles: ParticleType[] = [];
+    for(let particle of this.state.particles) {
+      let x = particle.x + particle.dx;
+      let y = particle.y + particle.dy;
+      let dx = particle.dx;
+      let dy = particle.dy;
+      particles.push({x, y, dx, dy});
+    }
+    let rAF = requestAnimationFrame(this.updateAnimationState);
+    this.setState({rAF: rAF, particles: particles});
+  }
+
+  componentDidMount() {
+    let rAF = requestAnimationFrame(this.updateAnimationState);
+    this.setState({rAF: rAF});
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this.state.rAF);
   }
 
   generateRandomParticle() : ParticleType {
