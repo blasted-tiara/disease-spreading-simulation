@@ -1,6 +1,5 @@
 import React from 'react';
 import ParticleType from '../types/ParticleType';
-import { States } from '../types/ParticleType';
 import * as Constants from './constants';
 
 interface CanvasProps {
@@ -22,23 +21,10 @@ class Canvas extends React.Component<CanvasProps, CanvasState> {
         ctx.save();
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, Constants.PARTICLE_RADIUS, 0, 2 * Math.PI);
-        ctx.fillStyle = this.getColor(particle.state);
+        ctx.fillStyle = particle.state;
         ctx.fill();
         ctx.restore();
       }
-    }
-  }
-
-  getColor(state: States) : string {
-    switch (state) {
-      case States.Healthy:
-        return "#1eb2a6";
-      case States.Infected:
-        return "#f67575";
-      case States.Cured:
-        return "#1eb2a6";
-      default:
-        return "#1eb2a6";
     }
   }
 

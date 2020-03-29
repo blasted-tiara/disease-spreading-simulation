@@ -7,8 +7,6 @@ export default interface ParticleType {
 }
 
 export enum States {
-  Healthy,
-  Infected,
-  Cured,
-  Dead
+  Healthy = "#1eb2a6",
+  Infected = "#f67575"
 }
