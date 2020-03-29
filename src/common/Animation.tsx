@@ -1,5 +1,5 @@
 import React from 'react';
-import ParticleType from '../types/ParticleType';
+import ParticleType, { States } from '../types/ParticleType';
 import * as Constants from './constants';
 import Canvas from './Canvas';
 
@@ -21,7 +21,7 @@ class Animation extends React.Component {
       let y = particle.y + particle.dy;
       let dx = this.isInRange(x, Constants.CANVAS_WIDTH) ? particle.dx : -particle.dx;
       let dy = this.isInRange(y, Constants.CANVAS_HEIGHT) ? particle.dy : -particle.dy;
-      particles.push({x, y, dx, dy});
+      particles.push({x, y, dx, dy, state: particle.state});
     }
     let rAF = requestAnimationFrame(this.updateAnimationState);
     this.setState({rAF: rAF, particles: particles});
@@ -46,7 +46,7 @@ class Animation extends React.Component {
     let dx = (Math.random() - 0.5) * Constants.MAX_SPEED;
     let dy = (Math.random() - 0.5) * Constants.MAX_SPEED;
 
-    return {x, y, dx, dy};
+    return {x, y, dx, dy, state: (Math.random() >= 0.05) ? States.Healthy : States.Infected};
   }
   
   generateNRandomParticles(n: number) : ParticleType[] {

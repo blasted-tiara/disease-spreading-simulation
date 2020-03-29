@@ -3,4 +3,12 @@ export default interface ParticleType {
   y: number;
   dx: number;
   dy: number;
+  state: States
+}
+
+export enum States {
+  Healthy,
+  Infected,
+  Cured,
+  Dead
 }
