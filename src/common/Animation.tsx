@@ -6,15 +6,47 @@ import Canvas from './Canvas';
 interface AnimationState {
   particles: ParticleType[];
   rAF: number;
+  startTime: Date;
 }
 
 class Animation extends React.Component {
   state = {
     rAF: 0,
-    particles: this.generateNRandomParticles(Constants.NUMBER_OF_PARTICLES)
+    particles: this.generateNRandomParticles(Constants.NUMBER_OF_PARTICLES),
+    startTime: new Date()
   }
 
+
+
   updateAnimationState = () => {
+    let rAF = requestAnimationFrame(this.updateAnimationState);
+    let particles = this.moveParticles()
+    particles = this.updateParticlesState(particles); 
+    this.setState({rAF: rAF, particles: particles});
+  }
+
+  updateParticlesState(particles: ParticleType[]) {
+    for(let infector = 0; infector < particles.length; infector++) {
+      if(particles[infector].state === States.Infected) {
+        for(let infectee = 0; infectee < particles.length; infectee++) {
+          if(particles[infectee].state === States.Healthy) {
+            if(this.calculateDistance(particles[infector], particles[infectee]) < Constants.SPREAD_RADIUS){
+              if(Math.random() < Constants.INFECTION_PROBABILITY) {
+                particles[infectee].state = States.Infected;
+              }
+            }
+          }
+        }
+      }
+    }
+    return particles;
+  }
+
+  calculateDistance(a: ParticleType, b: ParticleType) {
+    return Math.sqrt((a.x - b.x)**2 + (a.y - b.y)**2);
+  }
+
+  moveParticles() {
     let particles: ParticleType[] = [];
     for(let particle of this.state.particles) {
       let x = particle.x + particle.dx;
@@ -23,8 +55,11 @@ class Animation extends React.Component {
       let dy = this.isInRange(y, Constants.CANVAS_HEIGHT) ? particle.dy : -particle.dy;
       particles.push({x, y, dx, dy, state: particle.state});
     }
-    let rAF = requestAnimationFrame(this.updateAnimationState);
-    this.setState({rAF: rAF, particles: particles});
+    return particles;
+  }
+
+  elapsedMiliseconds(ms: number, time: Date) {
+    return time.getDate() - this.state.startTime.getTime() > ms;
   }
 
   isInRange(x: number, range: number) : boolean {
