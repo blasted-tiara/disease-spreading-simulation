@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/disease-spreading-simulation/static/css/main.5f361e03.chunk.css",
-    "main.js": "/disease-spreading-simulation/static/js/main.692e6ca6.chunk.js",
-    "main.js.map": "/disease-spreading-simulation/static/js/main.692e6ca6.chunk.js.map",
+    "main.css": "/disease-spreading-simulation/static/css/main.9eb0d9c2.chunk.css",
+    "main.js": "/disease-spreading-simulation/static/js/main.d8956be8.chunk.js",
+    "main.js.map": "/disease-spreading-simulation/static/js/main.d8956be8.chunk.js.map",
     "runtime-main.js": "/disease-spreading-simulation/static/js/runtime-main.85df1227.js",
     "runtime-main.js.map": "/disease-spreading-simulation/static/js/runtime-main.85df1227.js.map",
     "static/js/2.aad1ee5d.chunk.js": "/disease-spreading-simulation/static/js/2.aad1ee5d.chunk.js",
     "static/js/2.aad1ee5d.chunk.js.map": "/disease-spreading-simulation/static/js/2.aad1ee5d.chunk.js.map",
     "index.html": "/disease-spreading-simulation/index.html",
-    "precache-manifest.d6a231043f8f20afc4df36cdf1c7ba2b.js": "/disease-spreading-simulation/precache-manifest.d6a231043f8f20afc4df36cdf1c7ba2b.js",
+    "precache-manifest.5fdd31ef79164d851aba9863cd33e477.js": "/disease-spreading-simulation/precache-manifest.5fdd31ef79164d851aba9863cd33e477.js",
     "service-worker.js": "/disease-spreading-simulation/service-worker.js",
-    "static/css/main.5f361e03.chunk.css.map": "/disease-spreading-simulation/static/css/main.5f361e03.chunk.css.map",
+    "static/css/main.9eb0d9c2.chunk.css.map": "/disease-spreading-simulation/static/css/main.9eb0d9c2.chunk.css.map",
     "static/js/2.aad1ee5d.chunk.js.LICENSE.txt": "/disease-spreading-simulation/static/js/2.aad1ee5d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.85df1227.js",
     "static/js/2.aad1ee5d.chunk.js",
-    "static/css/main.5f361e03.chunk.css",
-    "static/js/main.692e6ca6.chunk.js"
+    "static/css/main.9eb0d9c2.chunk.css",
+    "static/js/main.d8956be8.chunk.js"
   ]
 }
