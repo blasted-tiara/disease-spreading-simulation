@@ -1,6 +1,6 @@
 import React from 'react';
 import Animation from './common/Animation';
-import './App.css';
+import './App.scss';
 
 function App() {
   return (

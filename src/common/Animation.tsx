@@ -16,8 +16,6 @@ class Animation extends React.Component {
     startTime: new Date()
   }
 
-
-
   updateAnimationState = () => {
     let rAF = requestAnimationFrame(this.updateAnimationState);
     let particles = this.moveParticles()
@@ -81,7 +79,7 @@ class Animation extends React.Component {
     let dx = (Math.random() - 0.5) * Constants.MAX_SPEED;
     let dy = (Math.random() - 0.5) * Constants.MAX_SPEED;
 
-    return {x, y, dx, dy, state: (Math.random() >= 0.05) ? States.Healthy : States.Infected};
+    return {x, y, dx, dy, state: (Math.random() >= Constants.INIT_INFECTED_PROBABILITY) ? States.Healthy : States.Infected};
   }
   
   generateNRandomParticles(n: number) : ParticleType[] {

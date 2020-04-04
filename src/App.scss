@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+
+  & .App-canvas {
+    width: 50vw;
+  }
 }
 
 .App-logo {
