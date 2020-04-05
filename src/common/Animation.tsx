@@ -3,20 +3,30 @@ import ParticleType, { States } from '../types/ParticleType';
 import * as Constants from './constants';
 import Canvas from './Canvas';
 import Button from '@material-ui/core/Button';
+import ParametersDialog from './ParametersDialog';
+
+interface AnimationProps {
+  numOfParticles: number;
+  handleNumOfParticlesChange: (e: any, newValue: number | number[]) => void;
+  initInfectedProb: number;
+  handleInitInfectedProbChange: (e: any, newValue: number | number[]) => void;
+}
 
 interface AnimationState {
   particles: ParticleType[];
   rAF: number;
   startTime: Date;
   active: boolean;
+  dialogOpen: boolean;
 }
 
-class Animation extends React.Component {
+class Animation extends React.Component<AnimationProps, AnimationState> {
   state = {
     rAF: 0,
-    particles: this.generateNRandomParticles(Constants.NUMBER_OF_PARTICLES),
+    particles: this.generateNRandomParticles(this.props.numOfParticles),
     startTime: new Date(),
-    active: true
+    active: true,
+    dialogOpen: false,
   }
 
   updateAnimationState = () => {
@@ -32,7 +42,11 @@ class Animation extends React.Component {
   }
 
   resetState = () => {
-    this.setState({particles: this.generateNRandomParticles(Constants.NUMBER_OF_PARTICLES)});
+    this.setState({particles: this.generateNRandomParticles(this.props.numOfParticles)});
+  }
+
+  handleDialogClose = () => {
+    this.setState({dialogOpen: false, particles: this.generateNRandomParticles(this.props.numOfParticles)});
   }
 
   updateParticlesState(particles: ParticleType[]) {
@@ -94,7 +108,7 @@ class Animation extends React.Component {
     if(state !== undefined) {
       return {x, y, dx, dy, state: state};
     } else {
-      return {x, y, dx, dy, state: (Math.random() >= Constants.INIT_INFECTED_PROBABILITY) ? States.Healthy : States.Infected};
+      return {x, y, dx, dy, state: (Math.random() >= this.props.initInfectedProb) ? States.Healthy : States.Infected};
     }
   }
   
@@ -113,14 +127,30 @@ class Animation extends React.Component {
     })
   }
 
+  showDialog = () => {
+    this.setState({dialogOpen: true})
+  }
+
   render() {
     return <div>
+      <ParametersDialog
+        handleNumOfParticlesChange={this.props.handleNumOfParticlesChange}
+        numOfParticles={this.props.numOfParticles}
+        initInfectedProb={this.props.initInfectedProb}
+        handleInitInfectedProbChange={this.props.handleInitInfectedProbChange }
+        handleClose={this.handleDialogClose}
+        open={this.state.dialogOpen}
+      >
+      </ParametersDialog>
       <Canvas particles={this.state.particles}/> 
       <Button variant="outlined" className="start-button" onClick={this.resetState}>
         Reset
       </Button>
       <Button variant="outlined" className="start-button" onClick={this.toggleActive}>
         {this.state.active ? "Stop" : "Start"}
+      </Button>
+      <Button variant="outlined" className="start-button" onClick={this.showDialog}>
+        Edit Params
       </Button>
     </div>
   }

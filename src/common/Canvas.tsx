@@ -1,6 +1,7 @@
 import React from 'react';
 import ParticleType from '../types/ParticleType';
 import * as Constants from './constants';
+import { Button } from '@material-ui/core';
 
 interface CanvasProps {
   particles: ParticleType[];

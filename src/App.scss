@@ -6,7 +6,7 @@
     pointer-events: none;
   }
 
-  & canvas {
+  canvas {
     transition: box-shadow 1s;
     &:hover {
       -webkit-box-shadow: 0px 0px 147px -26px #2d333b;
@@ -15,11 +15,10 @@
     }
   }
 
-  & .start-button {
+  .start-button {
     color: #63a6ac;
     border-color: #556e77;
     margin: 5px;
-    width: 50px;
   }
 
   .App-header {
@@ -36,4 +35,9 @@
   .App-link {
     color: #61dafb;
   }
+}
+
+.dialog-content {
+  background-color: #e0e0e0;
+  padding: 20px 40px;
 }
