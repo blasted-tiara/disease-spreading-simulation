@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/disease-spreading-simulation/precache-manifest.5fdd31ef79164d851aba9863cd33e477.js"
+  "/disease-spreading-simulation/precache-manifest.cbb68aea4c6d81f0e61710dbc824a6fb.js"
 );
 
 self.addEventListener('message', (event) => {
