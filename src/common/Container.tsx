@@ -24,9 +24,9 @@ export default class Container extends React.Component{
     return (
       <div className="App">
         <header className="App-header">
-          <h1>
+          <h3>
             🥔 infection spread simulation 🥔
-          </h1>
+          </h3>
           <Animation
             initInfectedProb={this.state.initInfectedProb}
             handleInitInfectedProbChange={this.handleInitInfectedPRobChange }
