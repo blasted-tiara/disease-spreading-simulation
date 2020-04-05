@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/disease-spreading-simulation/static/css/main.a12af88f.chunk.css",
+    "main.css": "/disease-spreading-simulation/static/css/main.3a8aba13.chunk.css",
     "main.js": "/disease-spreading-simulation/static/js/main.536ffbff.chunk.js",
     "main.js.map": "/disease-spreading-simulation/static/js/main.536ffbff.chunk.js.map",
     "runtime-main.js": "/disease-spreading-simulation/static/js/runtime-main.85df1227.js",
@@ -8,15 +8,15 @@
     "static/js/2.05dd69b9.chunk.js": "/disease-spreading-simulation/static/js/2.05dd69b9.chunk.js",
     "static/js/2.05dd69b9.chunk.js.map": "/disease-spreading-simulation/static/js/2.05dd69b9.chunk.js.map",
     "index.html": "/disease-spreading-simulation/index.html",
-    "precache-manifest.cbb68aea4c6d81f0e61710dbc824a6fb.js": "/disease-spreading-simulation/precache-manifest.cbb68aea4c6d81f0e61710dbc824a6fb.js",
+    "precache-manifest.c53c5553b3f073d46922f50da0f8b711.js": "/disease-spreading-simulation/precache-manifest.c53c5553b3f073d46922f50da0f8b711.js",
     "service-worker.js": "/disease-spreading-simulation/service-worker.js",
-    "static/css/main.a12af88f.chunk.css.map": "/disease-spreading-simulation/static/css/main.a12af88f.chunk.css.map",
+    "static/css/main.3a8aba13.chunk.css.map": "/disease-spreading-simulation/static/css/main.3a8aba13.chunk.css.map",
     "static/js/2.05dd69b9.chunk.js.LICENSE.txt": "/disease-spreading-simulation/static/js/2.05dd69b9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.85df1227.js",
     "static/js/2.05dd69b9.chunk.js",
-    "static/css/main.a12af88f.chunk.css",
+    "static/css/main.3a8aba13.chunk.css",
     "static/js/main.536ffbff.chunk.js"
   ]
 }

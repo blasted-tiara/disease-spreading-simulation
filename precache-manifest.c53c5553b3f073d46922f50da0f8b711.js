@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0ecffba9e07e1187a1b407ba3ae77e35",
+    "revision": "41fc621779de396f87a60ca69c98ecfc",
     "url": "/disease-spreading-simulation/index.html"
   },
   {
-    "revision": "7a583434cfd2a003fcc4",
-    "url": "/disease-spreading-simulation/static/css/main.a12af88f.chunk.css"
+    "revision": "649e09119b8eedc32945",
+    "url": "/disease-spreading-simulation/static/css/main.3a8aba13.chunk.css"
   },
   {
     "revision": "7e873a56097f37dfd5db",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/disease-spreading-simulation/static/js/2.05dd69b9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7a583434cfd2a003fcc4",
+    "revision": "649e09119b8eedc32945",
     "url": "/disease-spreading-simulation/static/js/main.536ffbff.chunk.js"
   },
   {
