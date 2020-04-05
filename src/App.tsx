@@ -1,5 +1,6 @@
 import React from 'react';
 import Animation from './common/Animation';
+
 import './App.scss';
 
 function App() {

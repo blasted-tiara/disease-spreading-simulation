@@ -2,25 +2,37 @@ import React from 'react';
 import ParticleType, { States } from '../types/ParticleType';
 import * as Constants from './constants';
 import Canvas from './Canvas';
+import Button from '@material-ui/core/Button';
 
 interface AnimationState {
   particles: ParticleType[];
   rAF: number;
   startTime: Date;
+  active: boolean;
 }
 
 class Animation extends React.Component {
   state = {
     rAF: 0,
     particles: this.generateNRandomParticles(Constants.NUMBER_OF_PARTICLES),
-    startTime: new Date()
+    startTime: new Date(),
+    active: true
   }
 
   updateAnimationState = () => {
-    let rAF = requestAnimationFrame(this.updateAnimationState);
-    let particles = this.moveParticles()
-    particles = this.updateParticlesState(particles); 
-    this.setState({rAF: rAF, particles: particles});
+    if(this.state.active) {
+      let rAF = requestAnimationFrame(this.updateAnimationState);
+      let particles = this.moveParticles()
+      particles = this.updateParticlesState(particles); 
+      this.setState({rAF: rAF, particles: particles});
+    } else {
+      let rAF = requestAnimationFrame(this.updateAnimationState);
+      this.setState({rAF: rAF});
+    }
+  }
+
+  resetState = () => {
+    this.setState({particles: this.generateNRandomParticles(Constants.NUMBER_OF_PARTICLES)});
   }
 
   updateParticlesState(particles: ParticleType[]) {
@@ -73,26 +85,43 @@ class Animation extends React.Component {
     cancelAnimationFrame(this.state.rAF);
   }
 
-  generateRandomParticle() : ParticleType {
+  generateRandomParticle(state?: States) : ParticleType {
     let x = Constants.PARTICLE_RADIUS + Math.random() * (Constants.CANVAS_WIDTH - 2 * Constants.PARTICLE_RADIUS);
     let y = Constants.PARTICLE_RADIUS + Math.random() * (Constants.CANVAS_HEIGHT - 2 * Constants.PARTICLE_RADIUS);
     let dx = (Math.random() - 0.5) * Constants.MAX_SPEED;
     let dy = (Math.random() - 0.5) * Constants.MAX_SPEED;
 
-    return {x, y, dx, dy, state: (Math.random() >= Constants.INIT_INFECTED_PROBABILITY) ? States.Healthy : States.Infected};
+    if(state !== undefined) {
+      return {x, y, dx, dy, state: state};
+    } else {
+      return {x, y, dx, dy, state: (Math.random() >= Constants.INIT_INFECTED_PROBABILITY) ? States.Healthy : States.Infected};
+    }
   }
   
   generateNRandomParticles(n: number) : ParticleType[] {
     let particles: ParticleType[] = [];
+    particles.push(this.generateRandomParticle(States.Infected));
     for(let i = 0; i < n; i++){
       particles.push(this.generateRandomParticle());
     }
     return particles;
   }
 
+  toggleActive = () => {
+    this.setState((prevState: AnimationState) => {
+      return {active: !prevState.active};
+    })
+  }
+
   render() {
     return <div>
       <Canvas particles={this.state.particles}/> 
+      <Button variant="outlined" className="start-button" onClick={this.resetState}>
+        Reset
+      </Button>
+      <Button variant="outlined" className="start-button" onClick={this.toggleActive}>
+        {this.state.active ? "Stop" : "Start"}
+      </Button>
     </div>
   }
 }
